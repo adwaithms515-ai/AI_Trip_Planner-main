@@ -1,6 +1,7 @@
 import { Link, useLocation } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { useState, useEffect } from 'react'
+import ChatBot from './ChatBot'
 
 const Layout = ({ children }) => {
   const [scrolled, setScrolled] = useState(false)
@@ -101,6 +102,7 @@ const Layout = ({ children }) => {
           </div>
         </div>
       </footer>
+      <ChatBot />
     </div>
   )
 }
