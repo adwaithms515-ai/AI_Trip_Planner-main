@@ -33,7 +33,7 @@ const Layout = ({ children }) => {
               <Link to="/listing" className={`text-xs font-bold uppercase tracking-widest transition-colors duration-300 ${isDarkNav ? 'text-slate-700 hover:text-primary drop-shadow-none' : 'text-white hover:text-white/80 drop-shadow-md'}`}>Tours</Link>
               <a className={`text-xs font-bold uppercase tracking-widest transition-colors duration-300 ${isDarkNav ? 'text-slate-700 hover:text-primary drop-shadow-none' : 'text-white hover:text-white/80 drop-shadow-md'}`} href="#">About</a>
               <a className={`text-xs font-bold uppercase tracking-widest transition-colors duration-300 ${isDarkNav ? 'text-slate-700 hover:text-primary drop-shadow-none' : 'text-white hover:text-white/80 drop-shadow-md'}`} href="#">Contact</a>
-              <Link to="/login" className={`px-6 py-2.5 rounded-full text-xs font-black tracking-widest transition-all shadow-lg hover:scale-105 ${isDarkNav ? 'bg-primary hover:bg-secondary text-white' : 'bg-white hover:bg-slate-100 text-slate-900 shadow-md'}`}>SIGN IN</Link>
+              <Link to="/login" className={`text-xs font-bold uppercase tracking-widest transition-colors duration-300 ${isDarkNav ? 'text-slate-700 hover:text-primary drop-shadow-none' : 'text-white hover:text-white/80 drop-shadow-md'}`}>Sign In</Link>
             </nav>
             <div className={`md:hidden transition-colors duration-300 ${isDarkNav ? 'text-slate-900 drop-shadow-none' : 'text-white drop-shadow-lg'}`}>
               <span className="material-symbols-outlined cursor-pointer">menu</span>
