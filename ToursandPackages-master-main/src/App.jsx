@@ -5,6 +5,7 @@ import Details from './pages/Details'
 import Booking from './pages/Booking'
 import Suggestions from './pages/Suggestions'
 import AiTripPlanner from './pages/AiTripPlanner'
+import Login from './pages/Login'
 import Layout from './components/Layout'
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
         <Route path="/booking" element={<Booking />} />
         <Route path="/suggestions" element={<Suggestions />} />
         <Route path="/ai-planner" element={<AiTripPlanner />} />
+        <Route path="/login" element={<Login />} />
       </Routes>
     </Layout>
   )

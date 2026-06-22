@@ -33,7 +33,7 @@ const Layout = ({ children }) => {
               <Link to="/listing" className={`text-xs font-bold uppercase tracking-widest transition-colors duration-300 ${isDarkNav ? 'text-slate-700 hover:text-primary drop-shadow-none' : 'text-white hover:text-white/80 drop-shadow-md'}`}>Tours</Link>
               <a className={`text-xs font-bold uppercase tracking-widest transition-colors duration-300 ${isDarkNav ? 'text-slate-700 hover:text-primary drop-shadow-none' : 'text-white hover:text-white/80 drop-shadow-md'}`} href="#">About</a>
               <a className={`text-xs font-bold uppercase tracking-widest transition-colors duration-300 ${isDarkNav ? 'text-slate-700 hover:text-primary drop-shadow-none' : 'text-white hover:text-white/80 drop-shadow-md'}`} href="#">Contact</a>
-              <button className="bg-slate-900 dark:bg-white text-white dark:text-slate-900 px-6 py-2.5 rounded-full text-xs font-black tracking-widest transition-all shadow-lg hover:scale-105">SIGN IN</button>
+              <Link to="/login" className="bg-slate-900 dark:bg-white text-white dark:text-slate-900 px-6 py-2.5 rounded-full text-xs font-black tracking-widest transition-all shadow-lg hover:scale-105">SIGN IN</Link>
             </nav>
             <div className={`md:hidden transition-colors duration-300 ${isDarkNav ? 'text-slate-900 drop-shadow-none' : 'text-white drop-shadow-lg'}`}>
               <span className="material-symbols-outlined cursor-pointer">menu</span>

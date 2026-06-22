@@ -17,6 +17,7 @@ import geocodeRouter   from "./routes/geocode.js";
 import transportRouter from "./routes/transport.js";
 import suggestionsRouter from "./routes/suggestions.js";
 import chatRouter from "./routes/chat.js";
+import authRouter from "./routes/auth.js";
 import { validateItinerary } from "./middleware/validate.js";
 import { requestLogger, cacheStatsHandler, createLogger } from "./lib/logger.js";
 import { cache } from "./lib/cache.js";
@@ -92,6 +93,7 @@ app.use("/api/geocode",   geocodeRouter);
 app.use("/api/transport", transportRouter);
 app.use("/api/suggestions", suggestionsRouter);
 app.use("/api/chat",        chatRouter);
+app.use("/api/auth",        authRouter);
 
 // ── Health + cache stats ──────────────────────────────────────
 app.get("/api/health", (_req, res) => {
