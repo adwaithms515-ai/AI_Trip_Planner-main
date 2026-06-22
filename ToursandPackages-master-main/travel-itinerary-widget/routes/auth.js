@@ -19,7 +19,7 @@ function escapeCSV(val) {
   return str;
 }
 
-// Helper to read users from CSV
+// Helper to read users from CSV (Robust: handles files with or without headers)
 async function readUsers() {
   if (!fs.existsSync(CSV_PATH)) {
     return [];
@@ -27,14 +27,13 @@ async function readUsers() {
   try {
     const data = await fs.promises.readFile(CSV_PATH, 'utf-8');
     const lines = data.split(/\r?\n/).filter(line => line.trim() !== '');
-    if (lines.length <= 1) return []; // header only
+    if (lines.length === 0) return [];
 
-    // Extract headers
-    const headers = lines[0].split(',').map(h => h.replace(/^"|"$/g, '').trim());
+    const isHeader = lines[0].toLowerCase().includes('username');
+    const startIdx = isHeader ? 1 : 0;
     const users = [];
 
-    for (let i = 1; i < lines.length; i++) {
-      // Simple CSV parser supporting double quotes
+    for (let i = startIdx; i < lines.length; i++) {
       const row = [];
       let inQuotes = false;
       let currentVal = '';
@@ -106,7 +105,7 @@ router.post('/signup', async (req, res) => {
     const newUser = {
       username,
       email,
-      password, // In production, hash this. But for CSV demo it stores directly.
+      password,
       registeredAt: new Date().toISOString()
     };
 
@@ -143,6 +142,42 @@ router.post('/login', async (req, res) => {
       message: 'Login successful!',
       user: { username: user.username, email: user.email }
     });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+// Admin Login route
+router.post('/admin-login', async (req, res) => {
+  const { username, password } = req.body;
+
+  if (!username || !password) {
+    return res.status(400).json({ error: 'Username and password are required' });
+  }
+
+  // Hardcoded Admin credentials
+  if (username === 'admin' && password === 'admin123') {
+    return res.json({
+      success: true,
+      message: 'Admin authentication successful!',
+      token: 'mock-admin-session-token-777'
+    });
+  } else {
+    return res.status(401).json({ error: 'Invalid admin credentials' });
+  }
+});
+
+// Get users list (for admin dashboard)
+router.get('/users', async (req, res) => {
+  try {
+    const users = await readUsers();
+    // Return users without showing passwords (for privacy/security)
+    const safeUsers = users.map(u => ({
+      username: u.username,
+      email: u.email,
+      registeredAt: u.registeredAt
+    }));
+    res.json({ success: true, users: safeUsers });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }

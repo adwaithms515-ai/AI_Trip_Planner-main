@@ -6,6 +6,7 @@ import Booking from './pages/Booking'
 import Suggestions from './pages/Suggestions'
 import AiTripPlanner from './pages/AiTripPlanner'
 import Login from './pages/Login'
+import AdminDashboard from './pages/AdminDashboard'
 import Layout from './components/Layout'
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
         <Route path="/suggestions" element={<Suggestions />} />
         <Route path="/ai-planner" element={<AiTripPlanner />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/admin" element={<AdminDashboard />} />
       </Routes>
     </Layout>
   )
