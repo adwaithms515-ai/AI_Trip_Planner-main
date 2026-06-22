@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { MessageSquare, X, Send, Sparkles, AlertCircle, Compass, HelpCircle, Map } from 'lucide-react';
+import { MessageSquare, X, Send, Sparkles, AlertCircle, Compass, HelpCircle, Map, Plane } from 'lucide-react';
 
 const SUGGESTIONS = [
   { text: "Suggest adventure package", icon: Compass },
@@ -96,6 +96,18 @@ export default function ChatBot() {
 
   return (
     <div className="fixed bottom-6 right-6 z-50 font-sans">
+      {/* Travel animations helper styles */}
+      <style dangerouslySetInnerHTML={{__html: `
+        @keyframes travel-orbit {
+          0% { transform: rotate(0deg) translateY(-44px) rotate(45deg); }
+          100% { transform: rotate(360deg) translateY(-44px) rotate(405deg); }
+        }
+        @keyframes compass-wobble {
+          0%, 100% { transform: rotate(0deg); }
+          50% { transform: rotate(15deg); }
+        }
+      `}} />
+
       <AnimatePresence>
         {isOpen && (
           <div className="relative mb-6">
@@ -234,12 +246,24 @@ export default function ChatBot() {
               animate={{ rotate: 0, opacity: 1 }}
               exit={{ rotate: -90, opacity: 0 }}
               transition={{ duration: 0.2 }}
-              className="relative"
+              className="relative flex items-center justify-center w-full h-full"
             >
-              <MessageSquare className="w-10 h-10" />
-              <span className="absolute -top-3 -right-3 flex h-5 w-5">
+              {/* Spinning Travel Compass */}
+              <Compass 
+                className="w-10 h-10 text-white" 
+                style={{ animation: 'compass-wobble 3s ease-in-out infinite' }} 
+              />
+              
+              {/* Orbiting Yellow Paper Airplane */}
+              <Plane 
+                className="w-4 h-4 text-yellow-300 absolute pointer-events-none" 
+                style={{ animation: 'travel-orbit 6s linear infinite' }} 
+              />
+              
+              {/* Notification Badge */}
+              <span className="absolute top-2.5 right-2.5 flex h-4 w-4">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-5 w-5 bg-emerald-500 border-2 border-slate-950"></span>
+                <span className="relative inline-flex rounded-full h-4 w-4 bg-emerald-500 border-2 border-slate-950"></span>
               </span>
             </motion.div>
           )}
